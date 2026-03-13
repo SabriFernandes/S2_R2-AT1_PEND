@@ -1,27 +1,37 @@
-let inputTarefa = document.getElementById("inputTarefa")
+let inputTarefa = document.getElementById("inputTarefa");
 let listaTarefas = document.getElementById("listaTarefas");
 let btnAdicionar = document.getElementById("btnAdicionar");
-let mensagem = document.getElementById("mensagem");
 
 btnAdicionar.addEventListener("click", () => {
 
-    let texto = inputTarefa.value
+    let textoTarefa = inputTarefa.value;
 
-    if (texto === " ") {
-        mensagem.innerText = "Tarefa vazia";
-        mensagem.classList.remove("text-sucess");
-        mensagem.classList.add("text-danger")
+    // verifica se o campo não está vazio
+    if (textoTarefa.trim() !== "") { //.trim não deixa espaço em branco
 
-    } else {
+        // cria o item da lista
         let li = document.createElement("li");
-        li.innerText = texto;
-        li.classList.add("list-group-item");
+        li.className = "list-group-item";
+        li.innerText = textoTarefa;
 
+        // cria o botão remover
+        let btnRemover = document.createElement("button");
+        btnRemover.innerText = "Remover";
+        btnRemover.className = "btn btn-danger btn-sm ms-2";
+
+        // adiciona o botão dentro do li
+        li.appendChild(btnRemover);
+
+        // adiciona o li na lista
         listaTarefas.appendChild(li);
-        
-        mensagem.innerText = "Tarefa adicionada";
-        mensagem.classList.remove("text-sucess");
-        mensagem.classList.add("text-danger")
+
+        // evento para remover a tarefa
+        btnRemover.addEventListener("click", () => {
+            li.remove();
+        });
+
+        // limpa o input
+        inputTarefa.value = " ";
     }
 
 });
