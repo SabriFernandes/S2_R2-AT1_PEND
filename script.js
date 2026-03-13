@@ -6,32 +6,47 @@ btnAdicionar.addEventListener("click", () => {
 
     let textoTarefa = inputTarefa.value;
 
-    // verifica se o campo não está vazio
-    if (textoTarefa.trim() !== "") { //.trim não deixa espaço em branco
+    if (textoTarefa.trim() !== "") { //Trim é para não haver partes em branco
 
-        // cria o item da lista
         let li = document.createElement("li");
-        li.className = "list-group-item";
-        li.innerText = textoTarefa;
+        li.className = "list-group-item d-flex align-items-center justify-content-between";
 
-        // cria o botão remover
-        let btnRemover = document.createElement("button");
+        let div = document.createElement("div");
+        li.appendChild(div);
+
+        let checkbox = document.createElement("input"); // criar checkbox
+        checkbox.type = "checkbox";
+        checkbox.className = "me-2";
+        div.appendChild(checkbox);
+
+        let texto = document.createElement("texto");// criar texto da tarefa
+        texto.innerText = textoTarefa;
+        div.appendChild(texto);
+
+        let btnRemover = document.createElement("button"); // criar botão remover
         btnRemover.innerText = "Remover";
         btnRemover.className = "btn btn-danger btn-sm ms-2";
-
-        // adiciona o botão dentro do li
         li.appendChild(btnRemover);
 
-        // adiciona o li na lista
+        // adicionar tarefa na lista
         listaTarefas.appendChild(li);
 
-        // evento para remover a tarefa
+        // mudar cor quando marcar
+        checkbox.addEventListener("change", () => {
+            if (checkbox.checked) {
+                li.style.backgroundColor = "lightgreen";
+            } else {
+                li.style.backgroundColor = "white";
+            }
+        });
+
+        // remover tarefa
         btnRemover.addEventListener("click", () => {
             li.remove();
         });
 
-        // limpa o input
-        inputTarefa.value = " ";
+        // limpar input
+        inputTarefa.value = "";
     }
 
 });
