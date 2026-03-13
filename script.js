@@ -1,22 +1,27 @@
-let valor = document.getElementById("valor");
-let btnTrocar = document.getElementById("btnTrocar");
-let item = document.getElementById("listaTexto");
+let inputTarefa = document.getElementById("inputTarefa")
+let listaTarefas = document.getElementById("listaTarefas");
+let btnAdicionar = document.getElementById("btnAdicionar");
+let mensagem = document.getElementById("mensagem");
 
-btnTrocar.addEventListener("click", () => {
+btnAdicionar.addEventListener("click", () => {
 
-    let textoArmazenado = valor.value;
+    let texto = inputTarefa.value
 
-    if (textoArmazenado) {
+    if (texto === " ") {
+        mensagem.innerText = "Tarefa vazia";
+        mensagem.classList.remove("text-sucess");
+        mensagem.classList.add("text-danger")
 
-        let novoItem = document.createElement("li");
+    } else {
+        let li = document.createElement("li");
+        li.innerText = texto;
+        li.classList.add("list-group-item");
 
-        novoItem.className = "list-group-item";
-
-        novoItem.innerText = textoArmazenado;
-
-        item.appendChild(novoItem);
-
-        valor.value = "";
+        listaTarefas.appendChild(li);
+        
+        mensagem.innerText = "Tarefa adicionada";
+        mensagem.classList.remove("text-sucess");
+        mensagem.classList.add("text-danger")
     }
 
 });
