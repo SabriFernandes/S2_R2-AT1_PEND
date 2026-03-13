@@ -1,8 +1,22 @@
-let mensagem = document.getElementById("mensagem");
+let valor = document.getElementById("valor");
 let btnTrocar = document.getElementById("btnTrocar");
-
+let item = document.getElementById("listaTexto");
 
 btnTrocar.addEventListener("click", () => {
- mensagem.innerText = "Mensagem trocada";
-    
+
+    let textoArmazenado = valor.value;
+
+    if (textoArmazenado) {
+
+        let novoItem = document.createElement("li");
+
+        novoItem.className = "list-group-item";
+
+        novoItem.innerText = textoArmazenado;
+
+        item.appendChild(novoItem);
+
+        valor.value = "";
+    }
+
 });
