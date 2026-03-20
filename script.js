@@ -1,52 +1,53 @@
-let inputTarefa = document.getElementById("inputTarefa");
-let listaTarefas = document.getElementById("listaTarefas");
-let btnAdicionar = document.getElementById("btnAdicionar");
 
-btnAdicionar.addEventListener("click", () => {
+let inputTarefa = document.getElementById("inputTarefa"); // pega o campo de input
+let listaTarefas = document.getElementById("listaTarefas"); // pega a lista onde vão as tarefas
+let btnAdicionar = document.getElementById("btnAdicionar"); // pega o botão de adicionar
 
-    let textoTarefa = inputTarefa.value;
+btnAdicionar.addEventListener("click", () => { // quando clicar no botão
 
-    if (textoTarefa.trim() !== "") { //Trim é para não haver partes em branco
+    let textoTarefa = inputTarefa.value; // pega o texto digitado
 
-        let li = document.createElement("li");
-        li.className = "list-group-item d-flex align-items-center justify-content-between";
+    if (textoTarefa.trim() !== "") { // verifica se não está vazio (trim remove espaços)
 
-        let div = document.createElement("div");
-        li.appendChild(div);
+        let li = document.createElement("li"); // cria um item da lista
+        li.className = "list-group-item d-flex align-items-center justify-content-between"; // adiciona estilos
+
+        let div = document.createElement("div"); // cria uma div para organizar
+        li.appendChild(div); // coloca a div dentro do li
 
         let checkbox = document.createElement("input"); // criar checkbox
-        checkbox.type = "checkbox";
-        checkbox.className = "me-2";
-        div.appendChild(checkbox);
+        checkbox.type = "checkbox"; // define como checkbox
+        checkbox.className = "me-2"; // adiciona espaçamento
+        div.appendChild(checkbox); // coloca dentro da div
 
-        let texto = document.createElement("texto");// criar texto da tarefa
-        texto.innerText = textoTarefa;
-        div.appendChild(texto);
+        let texto = document.createElement("texto"); // criar texto da tarefa (OBS: não é uma tag padrão)
+        texto.innerText = textoTarefa; // coloca o texto digitado
+        div.appendChild(texto); // adiciona na div
 
         let btnRemover = document.createElement("button"); // criar botão remover
-        btnRemover.innerText = "Remover";
-        btnRemover.className = "btn btn-danger btn-sm ms-2";
-        li.appendChild(btnRemover);
+        btnRemover.innerText = "Remover"; // texto do botão
+        btnRemover.className = "btn btn-danger btn-sm ms-2"; // estilos do botão
+        li.appendChild(btnRemover); // adiciona o botão no li
 
         // adicionar tarefa na lista
-        listaTarefas.appendChild(li);
+        listaTarefas.appendChild(li); // coloca o item na lista
 
         // mudar cor quando marcar
-        checkbox.addEventListener("change", () => {
-            if (checkbox.checked) {
-                li.style.backgroundColor = "lightgreen";
+        checkbox.addEventListener("change", () => { // quando marcar/desmarcar
+            if (checkbox.checked) { // se estiver marcado
+                li.style.backgroundColor = "lightgreen"; // muda cor para verde
             } else {
-                li.style.backgroundColor = "white";
+                li.style.backgroundColor = "white"; // volta para branco
             }
         });
 
         // remover tarefa
-        btnRemover.addEventListener("click", () => {
-            li.remove();
+        btnRemover.addEventListener("click", () => { // quando clicar em remover
+            li.remove(); // remove o item da lista
         });
 
         // limpar input
-        inputTarefa.value = "";
+        inputTarefa.value = ""; 
     }
 
 });
